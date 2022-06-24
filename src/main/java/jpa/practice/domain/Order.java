@@ -26,6 +26,10 @@ public class Order {
     @OneToMany(mappedBy = "member")
     private List<MemberProduct> memberProduct = new ArrayList<>();
 
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
+
     public void addOrderItem(OrderItem orderItem){
         // 양방향 연관관계 고려
         orderItems.add(orderItem);

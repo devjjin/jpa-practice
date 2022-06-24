@@ -15,7 +15,7 @@ public class Product {
 
     private String name;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "product")
     private List<MemberProduct> memberProducts = new ArrayList<>();
 
     public Long getId() {
