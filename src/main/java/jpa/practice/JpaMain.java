@@ -25,11 +25,15 @@ public class JpaMain {
 
             Member member = new Member();
             member.setUsername("memberA");
-            member.setTeamId(team.getId());
+            member.setTeam(team);
             em.persist(member);
 
-            Member findMember = em.find(Member.class, member.getTeamId());
-            Team findTeam = em.find(Team.class, findMember.getTeamId());
+            em.flush();
+            em.clear();
+
+            Member findMember = em.find(Member.class, member.getId());
+            Team findTeam = findMember.getTeam();
+            System.out.println("findTeam.getName() = " + findTeam.getName());
 
             tx.commit();
 
