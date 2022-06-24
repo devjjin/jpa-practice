@@ -1,5 +1,8 @@
 package jpa.practice;
 
+import jpa.practice.domain.Member;
+import jpa.practice.domain.Team;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -16,7 +19,20 @@ public class JpaMain {
         tx.begin();
 
         try {
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
+            Member member = new Member();
+            member.setUsername("memberA");
+            member.setTeamId(team.getId());
+            em.persist(member);
+
+            Member findMember = em.find(Member.class, member.getTeamId());
+            Team findTeam = em.find(Team.class, findMember.getTeamId());
+
             tx.commit();
+
         } catch (Exception e){
             tx.rollback();
         } finally{
