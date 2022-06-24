@@ -23,6 +23,9 @@ public class Order {
     @OneToMany(mappedBy = "order")
     List<OrderItem> orderItems = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member")
+    private List<MemberProduct> memberProduct = new ArrayList<>();
+
     public void addOrderItem(OrderItem orderItem){
         // 양방향 연관관계 고려
         orderItems.add(orderItem);
